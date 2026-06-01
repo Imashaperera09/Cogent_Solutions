@@ -115,7 +115,8 @@ export default function AiConsole({ onSuccess }: AiConsoleProps) {
     setLogIndex(0);
 
     try {
-      const res = await fetch("http://localhost:8000/api/register", {
+      const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${backendUrl}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
