@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Sparkles, Terminal, Cpu, Network, 
-  CheckCircle, AlertCircle, RefreshCw, Mail, 
+import {
+  Sparkles, Terminal, Cpu, Network,
+  CheckCircle, AlertCircle, RefreshCw, Mail,
   ShieldAlert, ChevronRight
 } from "lucide-react";
 
@@ -35,12 +35,12 @@ export default function AiConsole({ onSuccess }: AiConsoleProps) {
   const [logIndex, setLogIndex] = useState(0);
   const [detectedKeywords, setDetectedKeywords] = useState<string[]>([]);
   const [result, setResult] = useState<RegistrationResult | null>(null);
-  
+
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
   const SC_KEYWORDS = [
-    "logistics", "supply chain", "wms", "scm", "inventory", "costs", "visibility", 
-    "real-time", "warehouse", "delivery", "forecast", "demand", "transport", 
+    "logistics", "supply chain", "wms", "scm", "inventory", "costs", "visibility",
+    "real-time", "warehouse", "delivery", "forecast", "demand", "transport",
     "routes", "procurement", "resilience", "disruption", "automation", "oracle", "ai"
   ];
 
@@ -115,8 +115,7 @@ export default function AiConsole({ onSuccess }: AiConsoleProps) {
     setLogIndex(0);
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-      const res = await fetch(`${backendUrl}/api/register`, {
+      const res = await fetch("http://localhost:8000/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -218,7 +217,7 @@ export default function AiConsole({ onSuccess }: AiConsoleProps) {
                       className={errors.professional_focus ? "error" : ""}
                       rows={4}
                     />
-                    
+
                     <div className="textarea-analysis-widget">
                       <div className="analysis-stat">
                         <span>Characters: {formData.professional_focus.length}</span>
